@@ -46,20 +46,29 @@ class MainViewModel(application: Application): AndroidViewModel(application) {
 
     fun onThread() {
 
+        var numberPool: Int? = null
+        try {
+            numberPool = this.allPoolNumbers?.value?.first()?.title_pool
+        } catch (e: Exception) {
+        }
+
         var number: Int? = null
         try {
             number = this.allNumbers?.value?.last()?.title
             val numberMax: Int = allNumbers?.value?.maxByOrNull { it.title }!!.title
+
+            var numberMaxPool: Int? = null
+            if (numberPool != null) {
+                numberMaxPool = allPoolNumbers?.value?.maxByOrNull { it.title_pool }!!.title_pool
+            }
+
             if (contBool) {
-                counter = numberMax + 1
+
+                if (numberMaxPool == numberMax + 1) {
+                    counter = numberMax + 2
+                } else counter = numberMax + 1
                 contBool = false
             }
-        } catch (e: Exception) {
-        }
-
-        var numberPool: Int? = null
-        try {
-            numberPool = this.allPoolNumbers?.value?.first()?.title_pool
         } catch (e: Exception) {
         }
 
