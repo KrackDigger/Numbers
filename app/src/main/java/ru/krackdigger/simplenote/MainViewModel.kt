@@ -1,7 +1,6 @@
 package ru.krackdigger.simplenote
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.*
 import kotlinx.coroutines.*
 
@@ -50,9 +49,9 @@ class MainViewModel(application: Application): AndroidViewModel(application) {
         var number: Int? = null
         try {
             number = this.allNumbers?.value?.last()?.title
-            val bookMax: Int = allNumbers?.value?.maxByOrNull { it.title }!!.title
+            val numberMax: Int = allNumbers?.value?.maxByOrNull { it.title }!!.title
             if (contBool) {
-                counter = bookMax + 1
+                counter = numberMax + 1
                 contBool = false
             }
         } catch (e: Exception) {
@@ -61,7 +60,6 @@ class MainViewModel(application: Application): AndroidViewModel(application) {
         var numberPool: Int? = null
         try {
             numberPool = this.allPoolNumbers?.value?.first()?.title_pool
-            Log.d("title", "allPoolNumbers = " + numberPool)
         } catch (e: Exception) {
         }
 

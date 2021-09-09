@@ -2,7 +2,6 @@ package ru.krackdigger.simplenote
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -38,10 +37,7 @@ class MainFragment : Fragment() {
 
             override fun onUserDelete(user: UserEntity) {
 
-                Log.d("title", "onUserDetails = " + user)
                 val number: Int = user.title
-                Log.d("title", "number = " + number)
-
                 viewModel.delete(user)
                 viewModel.insertPool(PoolEntity(number))
             }
@@ -51,7 +47,6 @@ class MainFragment : Fragment() {
         })
 
         val orientation_screen = getResources().getConfiguration().orientation
-        Log.d("title", "orientation = " + orientation_screen)
 
         val numberOfColumns: Int
 
