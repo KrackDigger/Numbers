@@ -18,7 +18,7 @@ class MainViewModel(application: Application): AndroidViewModel(application) {
         repository = UserRepository(userDao, poolDao)
         allNumbers = repository.allNumbers
         allPoolNumbers = repository.allPoolNumbers
-        onThread()
+        onAddItem()
     }
 
     fun getListUsers() = allNumbers
@@ -44,33 +44,25 @@ class MainViewModel(application: Application): AndroidViewModel(application) {
         repository.deleteByTitleList(number)
     }
 
-    fun onThread() {
+    fun onAddItem() {
 
-        var numberPool: Int? = null
-        try {
-            numberPool = this.allPoolNumbers?.value?.first()?.title_pool
-        } catch (e: Exception) {
-        }
+        val numberPool = allPoolNumbers?.value?.firstOrNull()?.title_pool
+        val number = allNumbers?.value?.lastOrNull()?.title
+        val numberMax = allNumbers?.value?.maxByOrNull { it.title }?.title
+        val numberMaxPool = allPoolNumbers?.value?.maxByOrNull { it.title_pool }?.title_pool
 
-        var number: Int? = null
-        try {
-            number = this.allNumbers?.value?.last()?.title
-            val numberMax: Int = allNumbers?.value?.maxByOrNull { it.title }!!.title
+            if (contBool && numberMax != null) {
 
-            var numberMaxPool: Int? = null
-            if (numberPool != null) {
-                numberMaxPool = allPoolNumbers?.value?.maxByOrNull { it.title_pool }!!.title_pool
-            }
+                    if (numberMaxPool != null) {
 
-            if (contBool) {
+                        if (numberMaxPool > numberMax) {
+                            counter = numberMaxPool + 1
+                        } else counter = numberMax + 1
 
-                if (numberMaxPool == numberMax + 1) {
-                    counter = numberMax + 2
-                } else counter = numberMax + 1
+                    } else counter = numberMax + 1
+
                 contBool = false
             }
-        } catch (e: Exception) {
-        }
 
         viewModelScope.launch(Dispatchers.Main) {
 
@@ -85,9 +77,9 @@ class MainViewModel(application: Application): AndroidViewModel(application) {
             }
 
             withContext(Dispatchers.IO) {
-                Thread.sleep(5000)
+                delay(5000)
             }
-            onThread()
+            onAddItem()
         }
     }
 }
