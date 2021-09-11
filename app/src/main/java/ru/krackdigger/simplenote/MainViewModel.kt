@@ -48,18 +48,21 @@ class MainViewModel(application: Application): AndroidViewModel(application) {
 
         val numberPool = allPoolNumbers?.value?.firstOrNull()?.title_pool
         val number = allNumbers?.value?.lastOrNull()?.title
-        val numberMax = allNumbers?.value?.maxByOrNull { it.title }?.title
-        val numberMaxPool = allPoolNumbers?.value?.maxByOrNull { it.title_pool }?.title_pool
 
-            if (contBool && numberMax != null) {
+            if (contBool && number != null) {
 
-                    if (numberMaxPool != null) {
+                val numberMax = allNumbers?.value?.maxByOrNull { it.title }?.title
+                val numberMaxPool = allPoolNumbers?.value?.maxByOrNull { it.title_pool }?.title_pool
+
+                    if (numberMaxPool != null && numberMax!= null) {
 
                         if (numberMaxPool > numberMax) {
                             counter = numberMaxPool + 1
                         } else counter = numberMax + 1
 
-                    } else counter = numberMax + 1
+                    } else {
+                        if (numberMax != null) counter = numberMax + 1
+                    }
 
                 contBool = false
             }

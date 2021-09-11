@@ -32,17 +32,12 @@ class MainFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
         val adapter = UserAdapter(object : UserActionListener {
-            override fun onUserMove(user: UserEntity, moveBy: Int) {
-            }
 
             override fun onUserDelete(user: UserEntity) {
 
                 val number: Int = user.title
                 viewModel.delete(user)
                 viewModel.insertPool(PoolEntity(number))
-            }
-
-            override fun onUserDetails(user: UserEntity) {
             }
         })
 

@@ -10,11 +10,7 @@ import androidx.recyclerview.widget.DiffUtil
 
 interface UserActionListener {
 
-    fun onUserMove(user: UserEntity, moveBy: Int)
-
     fun onUserDelete(user: UserEntity)
-
-    fun onUserDetails(user: UserEntity)
 
 }
 
