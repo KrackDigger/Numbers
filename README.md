@@ -27,3 +27,6 @@
 Сделать пул номеров удаленных элементов и новые 
 добавлять из пула, и если там пусто просто наращивать номер. В вертикальном 
 положении сделать две колонки, в горизонтальном четыре.
+
+### Скриншот
+[screenshot](https://github.com/KrackDigger/Numbers/blob/main/screenshots/Screenshot_20210912_092554_ru.krackdigger.simplenote.jpg)
