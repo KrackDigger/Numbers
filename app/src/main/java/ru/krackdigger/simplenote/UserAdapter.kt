@@ -39,8 +39,6 @@ class UsersDiffCallback(
 class UserAdapter(private val actionListener: UserActionListener) :
         RecyclerView.Adapter<UserAdapter.UserHolder>(), View.OnClickListener {
 
-    private lateinit var viewModel: MainViewModel
-    private lateinit var binding: MainFragmentBinding
     private var users = mutableListOf<UserEntity>()
 
     override fun onClick(v: View) {
