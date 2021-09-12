@@ -6,6 +6,7 @@
 * [x] Kotlin
 * [x] Room
 * [x] MVVM
+* [x] Coroutines
 
 ## Описание задания
 
