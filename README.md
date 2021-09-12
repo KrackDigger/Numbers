@@ -5,8 +5,8 @@
 ### Стек
 * [x] Kotlin
 * [x] Room
-* [x] MVVM
 * [x] Coroutines
+* [x] MVVM
 
 ## Описание задания
 
